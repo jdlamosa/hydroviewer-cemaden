@@ -356,7 +356,7 @@ const regionsStyle = () => {
                 group: item.group,
                 onToggle: (isActive) => {
                     if (isActive && item.group) {
-                        turnOffLayerGroup(map, item.group);   
+                        turnOffLayerGroup(map, item.group, item.layer);   
                     }
 
                     item.layer.setVisible(isActive);
@@ -432,7 +432,7 @@ const regionsStyle = () => {
                 group: REGIONS_GROUP,
                 onToggle: (isActive) => {
                     if (isActive) {
-                        turnOffLayerGroup(map, REGIONS_GROUP);
+                        turnOffLayerGroup(map, REGIONS_GROUP, layer);
                     }
     
                     layer.setVisible(isActive);
@@ -575,6 +575,8 @@ const regionsStyle = () => {
         } else if (observedLayer.key) {
             stopObservingLayerByKey(observedLayer.key);
         }
+
+        buildObservedLayers()
     });
   
     return wrapper;

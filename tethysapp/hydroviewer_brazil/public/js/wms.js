@@ -1342,7 +1342,7 @@ $(function() {
     });
 });
 
-function turnOffLayerGroup(map, layerGroup) {
+function turnOffLayerGroup(map, layerGroup, except) {
     const layers = map.getLayers().getArray();
 
     for (let layer of layers) {
@@ -1350,7 +1350,10 @@ function turnOffLayerGroup(map, layerGroup) {
             layer.setVisible(false);
 
             observedLayers
-                .filter(({ group }) => group === layerGroup)
+                .filter(({ group, layer }) => {
+                    return group === layerGroup
+                        && (except ? layer !== except : true);
+                })
                 .forEach((observed) => observed.isOn = false);
         }
     }
