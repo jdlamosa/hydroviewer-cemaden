@@ -56,7 +56,7 @@ const featureStyle = (feature) => {
 const regionsStyle = () => {
     return new ol.style.Style({
         stroke: new ol.style.Stroke({
-            color: '#00F',
+            color: REGION_COLOR,
             width: 3,
         }),
         zIndex: 1,
@@ -311,7 +311,7 @@ const regionsStyle = () => {
     Object.keys(ottobacias_index).forEach((key) => {
         items[`ottobacia-${ key }`] = {
             ...ottobacias_index[key],
-            isOn: key === 'level_2',
+            isOn: key === 'level_1',
             group: OTTOBACIAS_GROUP,
         };
     });

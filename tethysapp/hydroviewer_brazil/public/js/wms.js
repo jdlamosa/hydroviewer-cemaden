@@ -35,6 +35,7 @@ const TWENTY_FIVE_YEAR_WARNING_COLOR = 'rgba(255,0,0,1)';
 const TEN_YEAR_WARNING_COLOR = 'rgba(255,56,5,1)';
 const FIVE_YEAR_WARNING_COLOR = 'rgba(253,154,1,1)';
 const TWO_YEAR_WARNING_COLOR = 'rgba(254,240,1,1)';
+const REGION_COLOR = 'rgba(0,100,0,1)';
 
 function toggleAcc(layerID) {
     let layer = wms_layers[layerID];
