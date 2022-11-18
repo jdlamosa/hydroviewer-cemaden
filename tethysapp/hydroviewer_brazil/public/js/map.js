@@ -147,7 +147,7 @@ const regionsStyle = () => {
             isOn: true,
         },
         'all-warning': {
-            name: 'All Warnings',
+            name: 'Warning points',
             layers: [
                 hundred_year_warning,
                 fifty_year_warning,
@@ -157,55 +157,14 @@ const regionsStyle = () => {
                 two_year_warning,
             ],
         },
-        '100-year-warning': {
-            icon: '<svg width="20" height="20" viewPort="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg"><polygon points="0 20, 10 0, 20 20" stroke="rgba(128,0,246,1)" fill="rgba(128,0,246,0.4)" stroke-width="2"/></svg>',
-            name: '100-Year Warnings',
-            layer: hundred_year_warning,
-            period: 100,
-        },
-        '50-year-warning': {
-            icon: '<svg width="20" height="20" viewPort="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg"><polygon points="0 20, 10 0, 20 20" stroke="rgba(128,0,106,1)" fill="rgba(128,0,106,0.4)" stroke-width="2"/></svg>',
-            name: '50-Year Warnings',
-            layer: fifty_year_warning,
-            period: 50,
-        },
-        '25-year-warning': {
-            icon: '<svg width="20" height="20" viewPort="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg"><polygon points="0 20, 10 0, 20 20" stroke="rgba(255,0,0,1)" fill="rgba(255,0,0,0.4)" stroke-width="2"/></svg>',
-            name: '25-Year Warnings',
-            layer: twenty_five_year_warning,
-            period: 25,
-        },
-        '10-year-warning': {
-            icon: '<svg width="20" height="20" viewPort="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg"><polygon points="0 20, 10 0, 20 20" stroke="rgba(255,56,5,1)" fill="rgba(255,56,5,0.4)" stroke-width="2"/></svg>',
-            name: '10-Year Warnings',
-            layer: ten_year_warning,
-            period: 10,
-        },
-        '5-year-warning': {
-            icon: '<svg width="20" height="20" viewPort="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg"><polygon points="0 20, 10 0, 20 20" stroke="rgba(253,154,1,1)" fill="rgba(253,154,1,0.4)" stroke-width="2"/></svg>',
-            name: '5-Year Warnings',
-            layer: five_year_warning,
-            period: 5,
-        },
-        '2-year-warning': {
-            icon: '<svg width="20" height="20" viewPort="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg"><polygon points="0 20, 10 0, 20 20" stroke="rgba(254,240,1,1)" fill="rgba(254,240,1,0.4)" stroke-width="2"/></svg>',
-            name: '2-Year Warnings',
-            layer: two_year_warning,
-            period: 2,
-        },
     };
 
     const parent = $('#warning .modal-body');
   
     const showAll = (show) => {
-        Object
-            .keys(points)
-            .filter((key) => key !== 'streams')
-            .forEach((key) => {
-            if (isEnabled(key)) { return; }
-            if (!points[key].layer) { return; }
-            points[key].layer.setVisible(show)
-        });
+        points['all-warning']
+            .layers
+            .forEach((layer) => layer.setVisible(show));
     };
 
     const isAllEnabled = () => {
@@ -235,16 +194,12 @@ const regionsStyle = () => {
                 name: point.name,
                 isOn,
                 onToggle: async (isActive) => {
-                    if (!isAllEnabled() || key === 'streams') {
-                        point.layer.setVisible(isActive);
-                        checkIntersections();
-                    }
+                    point.layer.setVisible(isActive);
+                    checkIntersections();
                 },
                 onRemove: () => {
-                    if (!isAllEnabled() || key === 'streams') {
-                        point.layer.setVisible(false);
-                        checkIntersections();
-                    }
+                    point.layer.setVisible(false);
+                    checkIntersections();
                     $(toggle).find('input').prop('checked', false);
                 },
             });
