@@ -37,19 +37,6 @@ const FIVE_YEAR_WARNING_COLOR = 'rgba(253,154,1,1)';
 const TWO_YEAR_WARNING_COLOR = 'rgba(254,240,1,1)';
 const REGION_COLOR = 'rgba(0,100,0,1)';
 
-function toggleAcc(layerID) {
-    let layer = wms_layers[layerID];
-    if (document.getElementById(`wmsToggle${layerID}`).checked) {
-        // Turn the layer and legend on
-        layer.setVisible(true);
-        $("#wmslegend" + layerID).show(200);
-    } else {
-        layer.setVisible(false);
-        $("#wmslegend" + layerID).hide(200);
-
-    }
-}
-
 function warning_point_style(feature, color) {
     const layerIndex = observedLayers.length - (observedLayers.findIndex(({ layer }) => layer === feature) ?? observedLayers.length);
     const flow = feature.get('flow');

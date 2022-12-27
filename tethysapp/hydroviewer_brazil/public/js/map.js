@@ -157,6 +157,22 @@ const regionsStyle = () => {
                 two_year_warning,
             ],
         },
+        accumulatedRainfall: {
+            name: 'Accumulated Rainfall',
+            layer: wms_layers[0],
+        },
+        rainfallProbability50: {
+            name: 'Rainfall Probability > 50mm',
+            layer: wms_layers[1],
+        },
+        rainfallProbability150: {
+            name: 'Rainfall Probability > 150mm',
+            layer: wms_layers[2],
+        },
+        rainfallProbability300: {
+            name: 'Rainfall Probability > 300mm',
+            layer: wms_layers[3],
+        },
     };
 
     const parent = $('#warning .modal-body');
@@ -600,10 +616,12 @@ const regionsStyle = () => {
  });
 
  $(document).ready(() => {
-    $('#warning').draggable();
-    $('#hydrology').draggable();
+    $('#warning .modal-dialog').draggable();
+    $('#hydrology .modal-dialog').draggable();
     $('#layers-panel').draggable();
-    $('#region').draggable();
+    $('#region .modal-dialog').draggable();
+    $('#obsgraph .modal-dialog').draggable();
+    $('#graph .modal-dialog').draggable();
   
     buildWarningPoints();
     buildHydrology();
